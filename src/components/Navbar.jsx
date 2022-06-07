@@ -12,16 +12,22 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Cartwidget from './Cartwidget';
 
-const pages = ['Productos', 'Armado de PC', 'Notebooks', 'Ofertas'];
+
 
 const Navbar = () => {
+  const pages = ['Productos', 'Armado de PC', 'Notebooks', 'Ofertas'];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
   };
   return (
     <AppBar position="static">
@@ -112,9 +118,10 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
-            <Cartwidget item={5} />
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Cartwidget item={5} />
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
