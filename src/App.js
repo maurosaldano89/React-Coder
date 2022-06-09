@@ -1,7 +1,7 @@
 import "./App.css";
 import NavBar from "./components/Navbar";
-import ItemListContainer from "./components/ItemListContainer";
 import ItemCount from "./components/ItemCount";
+import Item from "./components/Item";
 
 function App() {
   const onAdd = (count) => {
@@ -10,13 +10,11 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <header className="App-header">
-      {/* <ItemListContainer greeting={"PC de escritorio"} />
-      <ItemListContainer greeting={"Notebook"} />
-      <ItemListContainer greeting={"Monitores"} />
-  <ItemListContainer greeting={"Teleférico"} /> */}
+      <div className="App-body">
       <ItemCount onAdd={onAdd} stock={7} inicial={1}/>
-      </header>
+      <Item/>
+      <Item/>
+      </div>
     </div>
   );
 }
