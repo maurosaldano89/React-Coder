@@ -13,8 +13,8 @@ article.card {
 .header-card img {
     border-radius: 8px 8px 0 0;
     max-height: 200px;
-    height: 200px;
-    width: 100%;
+    height: 150px;
+    width: 50%;
 }
 
 .categoria-card span {
@@ -29,6 +29,6 @@ article.card {
 }
 
 .card-wrap {
-    display: flex;
-    flex-flow: wrap;
+    display: inline-flex;
+    flex-flow: flexGrow;
 }

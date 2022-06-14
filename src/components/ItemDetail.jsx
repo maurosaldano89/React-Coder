@@ -1,12 +1,7 @@
-import React from 'react'
-import ItemCount from './ItemCount'
-import './Item.css';
+import ItemCount from "./ItemCount"
 
-const Item = ({ product }) => {
-  const onAdd = (count) => {
-    alert(`Se agregaron ${count} productos al carrito`)
-  }
-  const { stock, price, name, id, image } = product
+const ItemDetail = ({ singleProduct }) => {
+  const { name, image, price, details, stock, category } = singleProduct
   return (
     <div className="card-wrap">
       <article className="card">
@@ -19,11 +14,10 @@ const Item = ({ product }) => {
           </div>
           <div className="name-card">
             <h3>Nombre:{name}</h3>
-            <p>{id}</p>
             <p>Precio: {price}</p>
             <p>Stock: {stock}</p>
             {/* <button onClick={}></button> */}
-            <ItemCount onAdd={onAdd} stock={stock} inicial={1} />
+            <ItemCount stock={stock} inicial={1} />
           </div>
         </footer>
       </article>
@@ -31,4 +25,4 @@ const Item = ({ product }) => {
   )
 }
 
-export default Item
+export default ItemDetail

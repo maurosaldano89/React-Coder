@@ -24,7 +24,7 @@ const ItemCount = ({ stock, inicial, onAdd }) => {
 
   return (
     <div>
-      <div>
+      <div className="display-flex">
         <button onClick={sumar}>+</button>
         <span>{count}</span>
         <button onClick={restar}>-</button>
