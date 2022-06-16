@@ -1,12 +1,13 @@
 import React from 'react'
 import ItemCount from './ItemCount'
 import './Item.css';
+import { Link } from 'react-router-dom';
 
 const Item = ({ product }) => {
   const onAdd = (count) => {
     alert(`Se agregaron ${count} productos al carrito`)
   }
-  const { stock, price, name, id, image } = product
+  const { stock, price, name, id, image, category } = product
   return (
     <div className="card-wrap">
       <article className="card">
@@ -15,14 +16,13 @@ const Item = ({ product }) => {
         </header>
         <footer className="footer-card">
           <div className="categoria-card">
-            <span>Categoria</span>
+            <span>{category}</span>
           </div>
           <div className="name-card">
-            <h3>Nombre:{name}</h3>
-            <p>{id}</p>
+            <h5>Nombre:{name}</h5>
             <p>Precio: {price}</p>
             <p>Stock: {stock}</p>
-            {/* <button onClick={}></button> */}
+            <Link className="btn btn-" to={'/item/' + id}>Descripción</Link>
             <ItemCount onAdd={onAdd} stock={stock} inicial={1} />
           </div>
         </footer>

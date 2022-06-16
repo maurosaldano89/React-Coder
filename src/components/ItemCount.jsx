@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './counter.css'
 
 const ItemCount = ({ stock, inicial, onAdd }) => {
   const [count, setCount] = useState(inicial)
@@ -24,13 +25,16 @@ const ItemCount = ({ stock, inicial, onAdd }) => {
 
   return (
     <div>
-      <div className="display-flex">
-        <button onClick={sumar}>+</button>
+      <div className="counter">
+        <button className="btn" onClick={sumar}>+</button>
         <span>{count}</span>
-        <button onClick={restar}>-</button>
+        <button className="btn" onClick={restar}>-</button>
       </div>
-      <button onClick={reset}>Reset</button>
-      <button onClick={() => { onAdd(count); reset() }} type="button">Agregar al carrito</button>
+      <div className="counter">
+        <button className="btn-" onClick={reset}>Reset</button>
+        <button className="btn-" onClick={() => { onAdd(count); reset() }} type="button">Agregar al carrito</button>
+      </div>
+
     </div >
   );
 }

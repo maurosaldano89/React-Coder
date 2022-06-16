@@ -1,0 +1,29 @@
+.counter {
+    justify-content: center;
+    display: flex;
+    padding: 2%;
+    border-radius: 12px;
+    padding: 3px;
+}
+
+.btn {
+    text-shadow: 5px 5px 5px #0f0e0e;
+    padding: 5px;
+    display: inline-block;
+    flex-direction: row;
+    font-weight: bold;
+    border: 2px solid #728ea9;
+    background: 1976D2;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn- {
+    background: #25c4d8;
+    text-shadow: 1px 1px 1px #0f0e0e;
+    border: 2px solid #728ea9;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 2%;
+    cursor: pointer;
+}

@@ -9,13 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import Cartwidget from './Cartwidget';
+import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
+import { Link } from 'react-router-dom';
 
 
 
 const Navbar = () => {
-  const pages = ['Productos', 'Armado de PC', 'Notebooks', 'Ofertas'];
+  const pages = ['Productos', 'Armado de PC', 'Computadoras', 'Hardware', 'Ofertas'];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [setAnchorElUser] = React.useState(null);
@@ -33,7 +34,7 @@ const Navbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <ComputerTwoToneIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 2 }} />
           <Typography
             variant="h6"
             noWrap
@@ -45,7 +46,7 @@ const Navbar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'black',
               textDecoration: 'none',
             }}
           >
@@ -81,14 +82,24 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <Button
+                onClick={handleOpenUserMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              ><Link to="/home" >Home</Link>
+              </Button>
+              <Button
+                onClick={handleOpenUserMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              ><Link to="category/Computadoras" >Computadoras</Link>
+              </Button>
+              <Button
+                onClick={handleOpenUserMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              ><Link to="category/Hardware" >Hardware</Link>
+              </Button>
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <ComputerTwoToneIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }} />
           <Typography
             variant="h5"
             noWrap
@@ -101,22 +112,28 @@ const Navbar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: 'black',
               textDecoration: 'none',
             }}
           >
             Computers MS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Button
+              onClick={handleOpenUserMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            ><Link to="/home" >Home</Link>
+            </Button>
+            <Button
+              onClick={handleOpenUserMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            ><Link to="category/Computadoras" >Computadoras</Link>
+            </Button>
+            <Button
+              onClick={handleOpenUserMenu}
+              sx={{ my: 2, color: 'white', display: 'block' }}
+            ><Link to="category/Hardware" >Hardware</Link>
+            </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

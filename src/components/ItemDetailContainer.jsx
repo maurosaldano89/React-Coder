@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
 import products from '../helpers/Array'
-
+import { useParams } from 'react-router-dom';
 
 
 
@@ -10,15 +10,16 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
-  const { id, name, details, price, stock, image, category } = products
+  const { id } = useParams();
+
 
 
   useEffect(() => {
     const promise = new Promise((res, rej) => {
       setTimeout(() => {
-        res(products.find(product => product.id === id));
+        res(products.find(item => item.id === id));
 
-      }, 2000);
+      }, 800);
     });
 
     promise
@@ -33,20 +34,17 @@ const ItemDetailContainer = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [id]);
+
+
+
 
   return (
-    <div className="container top-to-navbar-2">
-      <div className="row">
-
-        <div className="d-flex align-items-center justify-content-center">
-          <span className="me-4">Loading product...</span>
-          <div className="spinner-grow bg-gradient shadow-lg " role="status"></div>
-        </div>
-        :
-        <ItemDetail singleProduct={singleProduct} />
-      </div>
-    </div >
+    <>
+      <div>{loading && "Loading..."}</div>
+      <div>{error && "Hubo un error, intente más tarde"}</div>
+      <ItemDetail singleProduct={singleProduct} />
+    </>
 
   )
 
