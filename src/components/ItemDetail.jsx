@@ -1,20 +1,25 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import ItemCount from "./ItemCount"
 import './itemDetail.css';
 
 const ItemDetail = ({ singleProduct }) => {
   const { name, image, price, details, stock, category } = singleProduct
+  const [unidades, setUnidades] = useState();
+
   const onAdd = (count) => {
     alert(`Se agregaron ${count} productos al carrito`)
+    setUnidades(count)
   }
   return (
 
-    <div className="card-wrap">
-      <article className="card">
-        <header className="header-card">
+    <div className="card-wrap-detail">
+      <article className="card-detail">
+        <header className="header-card-detail">
           <img src={image} alt="images" />
         </header>
         <footer className="footer-card">
-          <div className="categoria-card">
+          <div className="categoria-card-detail">
             <span>Categoria : {category}</span>
           </div>
           <div className="name-card">
@@ -22,7 +27,7 @@ const ItemDetail = ({ singleProduct }) => {
             <p>Precio: {price}</p>
             <p>Stock: {stock}</p>
             <p>Detalles de producto : {details}</p>
-            <ItemCount onAdd={onAdd} stock={stock} inicial={1} />
+            {unidades > 0 ? <Link to={'/cart'} className="btn btn-">Terminar mi compra</Link> : <ItemCount stock={stock} inicial={1} onAdd={onAdd} />}
           </div>
         </footer>
       </article>

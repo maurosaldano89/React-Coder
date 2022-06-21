@@ -17,9 +17,9 @@ const ItemDetailContainer = () => {
   useEffect(() => {
     const promise = new Promise((res, rej) => {
       setTimeout(() => {
-        res(products.find(item => item.id === id));
+        res(products.find(item => item.id == id));
 
-      }, 800);
+      }, 1000);
     });
 
     promise
@@ -41,9 +41,11 @@ const ItemDetailContainer = () => {
 
   return (
     <>
-      <div>{loading && "Loading..."}</div>
-      <div>{error && "Hubo un error, intente más tarde"}</div>
-      <ItemDetail singleProduct={singleProduct} />
+      <div className="container top-to-navbar-2">
+        <div>{loading && "Loading..."}</div>
+        <div>{error && "Hubo un error, intente más tarde"}</div>
+        <ItemDetail singleProduct={singleProduct} />
+      </div>
     </>
 
   )

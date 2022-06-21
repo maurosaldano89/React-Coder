@@ -8,7 +8,6 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
 import Cartwidget from './Cartwidget';
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import { Link } from 'react-router-dom';
@@ -136,9 +135,11 @@ const Navbar = () => {
             </Button>
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <Cartwidget item={5} />
-            </IconButton>
+            <Link to="/cart">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                <Cartwidget />
+              </IconButton>
+            </Link>
           </Box>
         </Toolbar>
       </Container>
