@@ -4,18 +4,16 @@ import ItemListContainer from "./components/ItemListContainer";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import Cart from './components/Cart';
+import MyProvider from './context/CartContext';
+
 
 function App() {
   
   return (
     <div className="App-body">
     <BrowserRouter>
+    <MyProvider>
     <NavBar />
-    {/* <div className="App">
-      <div className="App-body">
-      <ItemListContainer/>
-      </div>
-    </div> */}
     <Routes>
      <Route path="/" element={<ItemListContainer/>}/>
      <Route path="/home" element={ <ItemListContainer /> } />
@@ -23,6 +21,7 @@ function App() {
      <Route path="/item/:id" element={<ItemDetailContainer/>}/>
      <Route path="/cart" element={<Cart/>}/>
     </Routes>
+    </MyProvider>
     </BrowserRouter>
     </div>
   );
