@@ -8,17 +8,17 @@ const MyProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   // Agrega un producto al carrito sin repetir
-  const addItem = (item, count) => {
+  const addItem = (item, qty) => {
     const newItem = {
       ...item,
-      count,
+      qty,
     };
 
     if (isInCart(newItem.id)) {
       const findProduct = cart.find((x) => x.id === newItem.id);
       const productIndex = cart.indexOf(findProduct);
       const auxArray = [...cart];
-      auxArray[productIndex].count += count;
+      auxArray[productIndex].qty += qty;
       setCart(auxArray);
     } else {
       setCart([...cart, newItem]);
@@ -42,12 +42,12 @@ const MyProvider = ({ children }) => {
 
   // devuelve la cantidad de un producto en el carrito
   const getItemQty = () => {
-    return cart.reduce((acc, item) => (acc += item.cantidad), 0);
+    return cart.reduce((acc, item) => (acc += item.qty), 0);
   };
 
   // devuelve el precio del producto
   const getItemPrice = () => {
-    return cart.reduce((acc, item) => (acc += item.precio * item.cantidad), 0);
+    return cart.reduce((acc, item) => (acc += item.price * item.qty), 0);
   };
 
   return (

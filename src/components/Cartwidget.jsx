@@ -11,7 +11,6 @@ const Cartwidget = ({ item }) => {
       {getItemQty() > 0 && (
         <span className="position-absolute top-0 translate-middle badge rounded-pill bg-orange text-color-background">
           {getItemQty()}
-          <span className="visually-hidden">num items in cart</span>
         </span>
       )}
     </>

@@ -5,15 +5,16 @@ import './itemDetail.css';
 import { CartContext } from "../context/CartContext";
 
 const ItemDetail = ({ singleProduct }) => {
-  const { name, image, price, details, stock, category } = singleProduct
-  const [unidades, setUnidades] = useState();
-  const { isInCart, addItem } = useContext(CartContext)
+  const { name, image, price, details, stock, category, id } = singleProduct
+  const [qty, setQty] = useState();
+  const { isInCart, addItem, getItemQty } = useContext(CartContext)
 
-  const onAdd = (count) => {
-    alert(`Se agregaron ${count} productos al carrito`)
-    setUnidades(count)
+  const onAdd = (qty) => {
+    alert(`Se agregaron ${qty} productos al carrito`)
+    setQty(qty)
     isInCart(singleProduct.id);
-    addItem(singleProduct, unidades);
+    addItem(singleProduct, qty);
+    console.log(qty)
   }
   return (
 
@@ -31,7 +32,7 @@ const ItemDetail = ({ singleProduct }) => {
             <p>Precio: {price}</p>
             <p>Stock: {stock}</p>
             <p>Detalles de producto : {details}</p>
-            {unidades > 0 ? <Link to={'/cart'} className="btn btn-">Terminar mi compra</Link> : <ItemCount stock={stock} inicial={1} onAdd={onAdd} />}
+            {qty > 0 ? <Link to={'/cart'} className="btn btn-">Terminar mi compra</Link> : <ItemCount stock={getItemQty(id) ? stock - getItemQty(id) : stock} inicial={1} onAdd={onAdd} />}
           </div>
         </footer>
       </article>

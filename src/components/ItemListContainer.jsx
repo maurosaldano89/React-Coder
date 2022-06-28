@@ -18,7 +18,6 @@ const ItemListContainer = () => {
     const promise = new Promise((res, rej) => {
       setTimeout(() => {
         (!id) ? res(products) : res(products.filter(item => item.category === id));
-        console.log(products)
 
       }, 2000);
     });
