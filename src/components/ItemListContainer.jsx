@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import ItemList from './ItemList'
-import products from '../helpers/Array'
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
+import { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
+import ItemList from './ItemList';
 
 
 
@@ -15,26 +15,39 @@ const ItemListContainer = () => {
 
 
   useEffect(() => {
-    const promise = new Promise((res, rej) => {
-      setTimeout(() => {
-        (!id) ? res(products) : res(products.filter(item => item.category === id));
+    const db = getFirestore(); // obtenemos la base de datos
+    const productsCollection = collection(db, 'products'); // obtenemos la colección
 
-      }, 2000);
-    });
+    if (id) {
+      const q = query(productsCollection, where('categoria', '==', id));
+      getDocs(q)
+        .then((snapshot) => {
+          setListProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        })
+        .catch(error => {
+          setError(true)
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+    else {
+      getDocs(productsCollection)
+        .then((snapshot) => {
+          setListProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        })
+        .catch(error => {
+          setError(true)
+          console.log(error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
 
-    promise
-      .then(result => {
-        setListProducts(result);
+  }, []);
 
-      })
-      .catch(error => {
-        setError(true)
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [id]);
 
   return (
     <>
@@ -45,5 +58,6 @@ const ItemListContainer = () => {
     </>
   )
 };
+
 
 export default ItemListContainer;

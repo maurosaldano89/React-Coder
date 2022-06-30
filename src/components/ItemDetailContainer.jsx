@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
 import products from '../helpers/Array'
 import { useParams } from 'react-router-dom';
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 
 
@@ -12,29 +13,22 @@ const ItemDetailContainer = () => {
   const [singleProduct, setSingleProduct] = useState({});
   const { id } = useParams();
 
+  const db = getFirestore();
+  const coleccion = 'products';
 
 
   useEffect(() => {
-    const promise = new Promise((res, rej) => {
-      setTimeout(() => {
-        res(products.find(item => item.id == id));
-
-      }, 1000);
-    });
-
-    promise
-      .then(result => {
-        setSingleProduct(result);
-
-      })
-      .catch(error => {
-        setError(true)
-        console.log(error);
-      })
-      .finally(() => {
+    const productFound = doc(db, coleccion, id);
+    getDoc(productFound).then((res) => {
+      if (res.exists()) {
+        console.log(res.data())
+        setSingleProduct({ ...res.data(), id: res.id })
         setLoading(false);
-      });
-  }, [id]);
+      } else {
+        alert("No se encontro el producto")
+      }
+    })
+  }, [id])
 
 
 
