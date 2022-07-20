@@ -8,12 +8,14 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Box, Button, Typography } from "@mui/material";
+import { DeleteForever, ShoppingCart } from "@mui/icons-material";
 
 
 
 export default function Cart() {
 
-  const { cart, getItemPrice, emptyCart, deleteItem } = useContext(CartContext);
+  const { cart, getItemPrice, emptyCart, deleteItem, getItemQty } = useContext(CartContext);
 
   return (
     <>
@@ -49,34 +51,98 @@ export default function Cart() {
                     <TableCell className='tableBody' align="center">{e.qty}</TableCell>
                     <TableCell className='tableBody' align="center">{e.price}</TableCell>
                     <TableCell className='tableBody' align="center">{e.price * e.qty}</TableCell>
-                    <TableCell className='tableBody' align="center"><button onClick={() => { deleteItem(e.id) }}> Remover Producto </button> </TableCell>
+                    <TableCell className='tableBody' align="center">
+
+                      <DeleteForever
+                        onClick={() => {
+                          deleteItem(e.id);
+                        }}
+                        className="buttoncontainer"
+                        style={{ backgroundColor: "grey" }}
+                      />
+
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
-          <br />
-          <br />
 
-          <button onClick={emptyCart}> Vaciar Carro </button>
-          <br />
-          <br />
-          <br />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: { xs: "column", sm: "row" },
+              marginTop: "20px",
+              gap: { sm: "300px" },
+            }}
+          >
+            <Button
+              className="buttoncontainer gretting2"
+              variant="dangerUnfilled"
+              sx={{ marginTop: { xs: "20px", sm: 0 } }}
+              onClick={emptyCart}
+            >
+              VACIAR CARRO
+            </Button>
+
+            <Link
+              style={{
+                textDecoration: "none",
+                backgroundColor: "transparent",
+                color: "white",
+              }}
+              to="/checkout"
+            >
+              <Button
+                className="buttoncontainer gretting2"
+                variant="dangerUnfilled"
+                sx={{ marginTop: { xs: "20px", sm: 0 } }}
+              >
+                Checkout
+              </Button>
+            </Link>
+          </Box>
+
           <div className='gretting2' style={{ height: 400 }}>
-            TOTAL :  $ {getItemPrice()}
-            <br />
-            <br />
-            <button>Finalizar Compra</button>
+            <Typography
+              variant="h6"
+              className="gretting"
+              sx={{ fontWeight: "bold" }}
+            >
+              Total: $ {getItemPrice()}
+              &nbsp;({getItemQty()} producto/s)
+            </Typography>
+            <Link to="/checkout"><button className='btn btn-warning fw-bold p-2 m-2  btnFinalBuy'>Finalizar Compra</button></Link>
           </div>
         </>
         :
         <>
-          <div className='gretting' style={{ height: 400 }}>
-            <p> 👉    Your cart is empty </p>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+              flexDirection: "column",
+              margin: "auto",
+              marginTop: "1rem",
+              marginBottom: "4rem",
+              gap: 3,
+            }}
+          >
+            <ShoppingCart
+              color="primary"
+              sx={{ fontSize: "80px", margin: "3rem" }}
+            />
 
-            <Link to={'/'}><button> ♻ HOME </button></Link>
+            <Typography className="gretting" variant="h5">
+              SU CARRITO ESTÁ VACÍO
+            </Typography>
 
-          </div>
+            <Link to={"/"}>
+              <button> VOLVER A HOME </button>
+            </Link>
+          </Box>
         </>
       }
     </>

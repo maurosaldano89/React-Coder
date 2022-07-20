@@ -9,7 +9,7 @@ const Item = ({ product }) => {
     <div className="card-wrap">
       <article className="card">
         <header className="header-card">
-          <img src={image} alt="images" />
+          <img src={image} alt="img of product" />
         </header>
         <footer className="footer-card">
           <div className="categoria-card">

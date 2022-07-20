@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import ItemDetail from './ItemDetail';
-import products from '../helpers/Array'
 import { useParams } from 'react-router-dom';
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 
@@ -21,7 +20,6 @@ const ItemDetailContainer = () => {
     const productFound = doc(db, coleccion, id);
     getDoc(productFound).then((res) => {
       if (res.exists()) {
-        console.log(res.data())
         setSingleProduct({ ...res.data(), id: res.id })
         setLoading(false);
       } else {

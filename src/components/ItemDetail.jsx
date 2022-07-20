@@ -14,14 +14,13 @@ const ItemDetail = ({ singleProduct }) => {
     setQty(qty)
     isInCart(singleProduct.id);
     addItem(singleProduct, qty);
-    console.log(qty)
   }
   return (
 
     <div className="card-wrap-detail">
       <article className="card-detail">
         <header className="header-card-detail">
-          <img src={image} alt="images" />
+          <img src={image} alt="img of product" />
         </header>
         <footer className="footer-card">
           <div className="categoria-card-detail">

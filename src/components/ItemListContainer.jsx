@@ -19,7 +19,7 @@ const ItemListContainer = () => {
     const productsCollection = collection(db, 'products'); // obtenemos la colección
 
     if (id) {
-      const q = query(productsCollection, where('categoria', '==', id));
+      const q = query(productsCollection, where('category', '==', id));
       getDocs(q)
         .then((snapshot) => {
           setListProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
@@ -46,7 +46,7 @@ const ItemListContainer = () => {
         });
     }
 
-  }, []);
+  }, [id]);
 
 
   return (

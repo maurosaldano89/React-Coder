@@ -7,15 +7,15 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import Cartwidget from './Cartwidget';
 import ComputerTwoToneIcon from '@mui/icons-material/ComputerTwoTone';
 import { Link } from 'react-router-dom';
+import { MenuItem } from '@mui/material';
 
 
 
 const Navbar = () => {
-  const pages = ['Productos', 'Armado de PC', 'Computadoras', 'Hardware', 'Ofertas'];
+  const pages = ['Computadoras', 'Hardware',];
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [setAnchorElUser] = React.useState(null);
@@ -81,21 +81,20 @@ const Navbar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <Button
-                onClick={handleOpenUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+              <MenuItem
+                onClick={handleCloseNavMenu}
+              //sx={{ my: 2, color: 'white', display: 'block' }}
               ><Link to="/home" >Home</Link>
-              </Button>
-              <Button
-                onClick={handleOpenUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              ><Link to="category/Computadoras" >Computadoras</Link>
-              </Button>
-              <Button
-                onClick={handleOpenUserMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              ><Link to="category/Hardware" >Hardware</Link>
-              </Button>
+              </MenuItem>
+              {pages.map((page) => (
+                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link className="navbar-brand" to={`category/${page}`}>
+                      {page}
+                    </Link>
+                  </Typography>
+                </MenuItem>
+              ))}
             </Menu>
           </Box>
           <ComputerTwoToneIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 2 }} />
@@ -118,21 +117,20 @@ const Navbar = () => {
             Computers MS
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <Button
-              onClick={handleOpenUserMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
+            <MenuItem
+              onClick={handleCloseNavMenu}
+            //sx={{ my: 2, color: 'white', display: 'block' }}
             ><Link to="/home" >Home</Link>
-            </Button>
-            <Button
-              onClick={handleOpenUserMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            ><Link to="category/Computadoras" >Computadoras</Link>
-            </Button>
-            <Button
-              onClick={handleOpenUserMenu}
-              sx={{ my: 2, color: 'white', display: 'block' }}
-            ><Link to="category/Hardware" >Hardware</Link>
-            </Button>
+            </MenuItem>
+            {pages.map((page) => (
+              <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <Typography textAlign="center">
+                  <Link className="navbar-brand" to={`category/${page}`}>
+                    {page}
+                  </Link>
+                </Typography>
+              </MenuItem>
+            ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Link to="/cart">
